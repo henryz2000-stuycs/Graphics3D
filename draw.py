@@ -22,16 +22,17 @@ def add_sphere( points, cx, cy, cz, r, step ):
                      edge[0] + 1, edge[1] + 1, edge[2] + 1)
         
 def generate_sphere( points, cx, cy, cz, r, step ):
-    i = 1
     i0 = 1
     ans = []
+    ans.append([r + cx, cy, cz])
     while i0 <= step:
         t0 = float(i0)/step
-        while i <= step:
+        i = 1
+        while i <= step/2:
             t = float(i)/step
-            x = r * math.cos(math.pi * t) + cx
-            y = r * math.sin(math.pi * t) * math.cos(2 * math.pi * t0) + cy
-            z = r * math.sin(math.pi * t) * math.sin(2 * math.pi * t0) * cz
+            x = r * math.cos(2 * math.pi * t) + cx
+            y = r * math.sin(2 * math.pi * t) * math.cos(2 * math.pi * t0) + cy
+            z = r * math.sin(2 * math.pi * t) * math.sin(2 * math.pi * t0) + cz
             edge = [x,y,z]
             ans.append(edge)
             i+=1
@@ -44,11 +45,12 @@ def add_torus( points, cx, cy, cz, r0, r1, step ):
                      edge[0] + 1, edge[1] + 1, edge[2] + 1)
 
 def generate_torus( points, cx, cy, cz, r0, r1, step ):
-    i = 1
     i0 = 1
     ans = []
+    ans.append([r0 + r1 + cx, cy, r1 + cz])
     while i0 <= step:
         t0 = float(i0)/step
+        i = 1
         while i <= step:
             t = float(i)/step
             x = math.cos(2 * math.pi * t0) * (r0 * math.cos(2 * math.pi * t) + r1) + cx

@@ -62,8 +62,8 @@ def parse_file( fname, edges, transform, screen, color ):
             args = lines[c].strip().split(' ')
 
         if line == 'clear':
-            #edges = []
-            pass
+            edges = []
+            #pass
             
         elif line == 'sphere':
             add_sphere(edges,
